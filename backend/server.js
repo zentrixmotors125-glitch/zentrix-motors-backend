@@ -45,6 +45,9 @@ const storage = multer.storage ? multer.diskStorage({
 
 const upload = multer({ storage });
 
+// Health check
+app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date().toISOString() }));
+
 // Cars API
 app.get('/api/cars', (req, res) => {
   db.all('SELECT * FROM cars ORDER BY id DESC', [], (err, rows) => {
