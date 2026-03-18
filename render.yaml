@@ -3,7 +3,7 @@ services:
     name: zentrix-motors-api
     env: node
     plan: free
-    buildCommand: npm install && npm rebuild sqlite3
+    buildCommand: rm -rf node_modules && npm install && npm rebuild sqlite3
     startCommand: node server.js
     rootDir: backend
     envVars:
