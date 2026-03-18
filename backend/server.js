@@ -75,54 +75,7 @@ app.get('/api/cars/:id', (req, res) => {
   });
 });
 
-// Admin add car
-app.post('/api/admin/cars', upload.any(), (req, res) => {
-  try {
-    const { name, brand, price, stock, year, km_driven, fuel_type, transmission, owner_history, description } = req.body;
-    const imagePaths = req.files ? req.files.map(f => `/uploads/${f.filename}`) : [];
-    
-    const sql = `INSERT INTO cars (name, brand, price, stock, year, km_driven, fuel_type, transmission, owner_history, description, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-    const params = [name, brand, price, parseInt(stock)||1, year, km_driven, fuel_type, transmission, owner_history, description, JSON.stringify(imagePaths)];
-    
-    db.run(sql, params, function(err) {
-      if (err) {
-        console.error("DB INSERT ERROR:", err);
-        return res.status(500).json({ error: err.message });
-      }
-      res.status(201).json({ id: this.lastID, message: 'Car added successfully' });
-    });
-  } catch (err) {
-    console.error("POST CATCH ERROR:", err);
-    res.status(500).json({ error: err.message });
-  }
-});
 
-// Admin edit car
-app.put('/api/admin/cars/:id', upload.any(), (req, res) => {
-  const { name, brand, price, stock, year, km_driven, fuel_type, transmission, owner_history, description, existingImages } = req.body;
-  
-  let imagesToKeep = [];
-  if (existingImages) {
-    imagesToKeep = Array.isArray(existingImages) ? existingImages : [existingImages];
-  }
-  const newImagePaths = req.files ? req.files.map(f => `/uploads/${f.filename}`) : [];
-  const finalImages = [...imagesToKeep, ...newImagePaths];
-
-  const sql = `UPDATE cars SET name=?, brand=?, price=?, stock=?, year=?, km_driven=?, fuel_type=?, transmission=?, owner_history=?, description=?, images=? WHERE id=?`;
-  const params = [name, brand, price, parseInt(stock)||0, year, km_driven, fuel_type, transmission, owner_history, description, JSON.stringify(finalImages), req.params.id];
-  
-  db.run(sql, params, function(err) {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: 'Car updated successfully' });
-  });
-});
-
-app.delete('/api/admin/cars/:id', (req, res) => {
-  db.run('DELETE FROM cars WHERE id = ?', [req.params.id], function(err) {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: 'Car deleted' });
-  });
-});
 
 // Enquiries API
 app.post('/api/enquire', (req, res) => {
@@ -143,18 +96,6 @@ app.post('/api/enquire', (req, res) => {
   });
 });
 
-app.get('/api/admin/enquiries', (req, res) => {
-  const sql = `
-    SELECT e.*, c.name as carName 
-    FROM enquiries e 
-    LEFT JOIN cars c ON e.carId = c.id 
-    ORDER BY e.createdAt DESC
-  `;
-  db.all(sql, [], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
-});
 
 // Features API
 app.get('/api/features', (req, res) => {
