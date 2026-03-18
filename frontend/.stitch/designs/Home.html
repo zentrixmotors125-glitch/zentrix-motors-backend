@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zentrix Motors Home Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#080b11",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                        "accent-purple": "#8b5cf6",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(8, 11, 17, 0) 0%, rgba(8, 11, 17, 0.9) 80%, #080b11 100%);
+        }
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(37, 106, 244, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display selection:bg-primary/30">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-20">
+<!-- Header -->
+<header class="fixed top-0 z-50 flex w-full items-center justify-between px-6 py-4 backdrop-blur-md bg-background-dark/80 border-b border-white/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl font-bold">rocket_launch</span>
+<h1 class="text-xl font-bold tracking-tight uppercase">Zentrix</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 hover:bg-white/10">
+<span class="material-symbols-outlined text-xl">search</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 hover:bg-white/10">
+<span class="material-symbols-outlined text-xl">menu</span>
+</button>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative h-[751px] w-full pt-16">
+<div class="absolute inset-0 z-0">
+<div class="h-full w-full bg-cover bg-center" data-alt="Three luxury sports cars in a dark studio with neon reflections" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyTolWPPuraIAjvck7JGbhkGJHndNku3VcWjrUMnIdiUdvWbGu2GSM5nldVt_BjHqtRgtQ4jXcq-ttSu-qF_vhT_zBuzOFCZ5RGi9BQaFdgevA8DLcBoN1fxwpZ8nPWurnE-kvQsZntl8OS0Q__KB9-RfRd8OdutHosQfioTdphfLp8o3AqO-R-h7ep6KJTwrYvrLLbRGTLjOTBIsvojD_i4QiS5xG0CkGrklHI0inlIPzuoBKg9pJfATeukqIXK8CQ3wqjOn196Wg')"></div>
+<div class="absolute inset-0 hero-gradient"></div>
+<div class="absolute bottom-1/4 left-0 h-40 w-full bg-gradient-to-t from-primary/10 to-transparent blur-3xl"></div>
+</div>
+<div class="relative z-10 flex h-full flex-col justify-end px-6 pb-12">
+<h2 class="text-4xl font-black leading-[1.1] tracking-tight text-white md:text-6xl">
+                    Premium Pre-Owned <br/>
+<span class="text-primary">Cars at the Best Prices</span>
+</h2>
+<p class="mt-4 max-w-xs text-sm text-slate-400">
+                    Experience the future of luxury mobility with our curated collection of elite high-performance vehicles.
+                </p>
+<div class="mt-8 flex gap-3">
+<button class="flex-1 rounded-xl bg-primary px-6 py-4 text-sm font-bold text-white shadow-lg neon-glow">
+                        View Cars
+                    </button>
+<button class="flex-1 rounded-xl bg-white/10 px-6 py-4 text-sm font-bold text-white backdrop-blur-md border border-white/10">
+                        Consultation
+                    </button>
+</div>
+</div>
+</section>
+<!-- Features Section (Glassmorphism Cards) -->
+<section class="px-6 py-8">
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card flex flex-col gap-3 rounded-2xl p-4">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<h3 class="text-sm font-bold">Verified Cars</h3>
+<p class="text-xs text-slate-400">200+ point inspection</p>
+</div>
+</div>
+<div class="glass-card flex flex-col gap-3 rounded-2xl p-4">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-purple/20 text-accent-purple">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h3 class="text-sm font-bold">Best Price</h3>
+<p class="text-xs text-slate-400">Market-match guarantee</p>
+</div>
+</div>
+<div class="glass-card flex flex-col gap-3 rounded-2xl p-4">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-500">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<div>
+<h3 class="text-sm font-bold">Easy Finance</h3>
+<p class="text-xs text-slate-400">Instant loan approval</p>
+</div>
+</div>
+<div class="glass-card flex flex-col gap-3 rounded-2xl p-4">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500/20 text-orange-500">
+<span class="material-symbols-outlined">handshake</span>
+</div>
+<div>
+<h3 class="text-sm font-bold">Trusted</h3>
+<p class="text-xs text-slate-400">5-star rated dealer</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Latest Cars Section -->
+<section class="py-8">
+<div class="flex items-center justify-between px-6 mb-6">
+<h2 class="text-xl font-bold">Latest Arrivals</h2>
+<button class="text-sm text-primary font-medium">See All</button>
+</div>
+<div class="flex gap-4 overflow-x-auto px-6 pb-4 no-scrollbar">
+<!-- Car Card 1 -->
+<div class="min-w-[300px] flex-none rounded-2xl bg-white/5 border border-white/5 overflow-hidden">
+<div class="relative h-48 w-full">
+<img class="h-full w-full object-cover" data-alt="Side profile of a sleek Mercedes-Benz S-Class" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBubHO85oAOyMiNfeCPkuO4c4AePwm23Czh5xDtaO9hudEOdEG7jbuDv1gNNs33H5OIESDq4bsgDCE2i-EIvJ2nTIajGf_pclS3htGc6NfcKo_SsisdPd8hpBuZkZR2a9MOj03ThexNSz0SV6zGrXMY-jmTauzTbxHV3h-fKKCLSrzsBty3G_aPap_kgawh-2SjvczNNNyYC-9gs2dplYx2SKHzAOrKK8y9LYhgHH9tIr3AfyXx_Fwpyg32D3SBpNPwUpCittFVK3y4"/>
+<div class="absolute top-3 left-3 rounded-full bg-black/50 px-3 py-1 text-[10px] font-bold backdrop-blur-md">NEW ARRIVAL</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold">Mercedes-Benz S-Class</h3>
+<p class="text-xs text-slate-400">S580 Executive Luxury Sedan</p>
+</div>
+<span class="text-primary font-bold">$124,900</span>
+</div>
+<div class="mt-4 grid grid-cols-3 gap-2 border-y border-white/5 py-3">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">calendar_today</span>
+<span class="text-[10px] font-medium">2023</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">speed</span>
+<span class="text-[10px] font-medium">4,200 mi</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">settings</span>
+<span class="text-[10px] font-medium">Automatic</span>
+</div>
+</div>
+<button class="mt-4 w-full rounded-xl bg-primary/20 py-3 text-sm font-bold text-primary hover:bg-primary hover:text-white transition-all">
+                            Buy Now
+                        </button>
+</div>
+</div>
+<!-- Car Card 2 -->
+<div class="min-w-[300px] flex-none rounded-2xl bg-white/5 border border-white/5 overflow-hidden opacity-60">
+<div class="relative h-48 w-full">
+<img class="h-full w-full object-cover" data-alt="Rear view of a white Porsche 911 Carrera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD6GZNZUP64yhhxuShgJ3LCegyGkws_ubuFfhH8rDtfRddwuMxVhWArRlSK7ZLwUvOXzgvwoMrxoHHJ8uTuB4QlpMG2yhPwLFla-Lf94f3SevHSSFTHmhgGoy0YlW0aoE2f9s8L3Eb-k20k1fGVuF6gsaZDsRf6uLM-_kWypnHkjtBKHNZh0XmdQtch3clnKmem1g8DNFjijAFoxE0t6sKJdlKTRXgQSA-fzSvX97yPrsK3wLm-Akf5PAtdrW-MoaJ1dRsdMYxNNqr"/>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-bold">Porsche 911 Carrera</h3>
+<p class="text-xs text-slate-400">S Heritage Edition</p>
+</div>
+</div>
+</div>
+<!-- Slider Dots -->
+<div class="flex justify-center gap-1.5 mt-2">
+<div class="h-1.5 w-6 rounded-full bg-primary"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-white/20"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-white/20"></div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="px-6 py-8">
+<h2 class="text-xl font-bold mb-6">Premium Services</h2>
+<div class="space-y-4">
+<div class="flex items-center gap-4 rounded-2xl bg-white/5 p-4 border border-white/5">
+<div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<div class="flex-1">
+<h3 class="text-sm font-bold">Car Inspection</h3>
+<p class="text-xs text-slate-400">Comprehensive mechanical audit</p>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 rounded-2xl bg-white/5 p-4 border border-white/5">
+<div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div class="flex-1">
+<h3 class="text-sm font-bold">Car Assistance</h3>
+<p class="text-xs text-slate-400">24/7 Roadside support</p>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 rounded-2xl bg-white/5 p-4 border border-white/5">
+<div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined">sell</span>
+</div>
+<div class="flex-1">
+<h3 class="text-sm font-bold">Sell Your Car</h3>
+<p class="text-xs text-slate-400">Instant evaluation &amp; payout</p>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-6 py-8">
+<div class="relative overflow-hidden rounded-3xl bg-primary px-6 py-10 shadow-2xl">
+<div class="absolute -top-12 -right-12 h-48 w-48 rounded-full bg-white/10 blur-2xl"></div>
+<div class="absolute -bottom-12 -left-12 h-48 w-48 rounded-full bg-black/20 blur-2xl"></div>
+<div class="relative z-10 text-center">
+<h2 class="text-2xl font-bold text-white">Find Your Perfect Car Today</h2>
+<p class="mt-2 text-sm text-white/80">Browse our exclusive inventory of over 500+ luxury vehicles.</p>
+<button class="mt-6 rounded-full bg-white px-8 py-3 text-sm font-bold text-primary shadow-lg">
+                        Browse Inventory
+                    </button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="mt-8 px-6 pb-24 text-center">
+<div class="flex items-center justify-center gap-2 mb-4 opacity-50">
+<span class="material-symbols-outlined text-lg">rocket_launch</span>
+<span class="text-sm font-bold tracking-widest uppercase">Zentrix Motors</span>
+</div>
+<p class="text-xs text-slate-500 leading-relaxed">
+                124 Luxury Blvd, Autoville, NY 10012<br/>
+                © 2024 Zentrix Motors. All rights reserved.
+            </p>
+<div class="mt-6 flex justify-center gap-6">
+<span class="material-symbols-outlined text-slate-400">public</span>
+<span class="material-symbols-outlined text-slate-400">alternate_email</span>
+<span class="material-symbols-outlined text-slate-400">share</span>
+</div>
+</footer>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 z-50 flex w-full justify-around border-t border-white/5 bg-background-dark/95 px-4 pb-6 pt-3 backdrop-blur-xl">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="text-[10px] font-medium">Inventory</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">sell</span>
+<span class="text-[10px] font-medium">Sell</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>
