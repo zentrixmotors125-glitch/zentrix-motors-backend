@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { api } from '../utils/api';
 
 export const LatestCars: React.FC = () => {
   const [cars, setCars] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('/api/cars')
-      .then(res => res.json())
+    api.get<any[]>('/api/cars')
       .then(data => setCars(data.slice(0, 6)))
-      .catch(err => console.error(err));
+      .catch(err => console.error('LatestCars fetch error:', err));
   }, []);
 
   return (

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { api } from '../utils/api';
 
 export const Features: React.FC = () => {
   const [features, setFeatures] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('/api/features')
-      .then(res => res.json())
+    api.get<any[]>('/api/features')
       .then(data => setFeatures(data))
-      .catch(err => console.error(err));
+      .catch(err => console.error('Features fetch error:', err));
   }, []);
 
   return (

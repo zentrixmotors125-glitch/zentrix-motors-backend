@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { api } from '../utils/api';
+import React, { useEffect, useState } from 'react';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { Features } from '../components/Features';
@@ -11,9 +12,19 @@ export const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial asset loading for smooth entry
-    const timer = setTimeout(() => setIsLoading(false), 1200);
-    return () => clearTimeout(timer);
+    // Wake up the backend during splash screen
+    const wakeUpBackend = async () => {
+      try {
+        await api.get('/api/health'); // Health check or services call
+      } catch (err) {
+        console.warn('Backend wake-up attempt failed, moving on to screen reveal...', err);
+      } finally {
+        // Small additional delay for smoother transition
+        setTimeout(() => setIsLoading(false), 500);
+      }
+    };
+    
+    wakeUpBackend();
   }, []);
 
   if (isLoading) {

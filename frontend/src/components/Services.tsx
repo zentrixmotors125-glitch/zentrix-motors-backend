@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { api } from '../utils/api';
 
 export const Services: React.FC = () => {
   const [services, setServices] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('/api/services')
-      .then(res => res.json())
+    api.get<any[]>('/api/services')
       .then(data => setServices(data))
-      .catch(err => console.error(err));
+      .catch(err => console.error('Services fetch error:', err));
   }, []);
 
   return (

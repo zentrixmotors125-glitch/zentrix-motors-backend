@@ -4,9 +4,9 @@ const path = require('path');
 const dbPath = path.resolve(__dirname, 'zentrix.db');
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
-    console.error('Error connecting to database:', err.message);
+    console.error('CRITICAL DB ERROR: Error connecting to database:', err.message);
   } else {
-    console.log('Connected to the SQLite database.');
+    console.log('Successfully connected to the SQLite database at:', dbPath);
   }
 });
 
