@@ -43,6 +43,7 @@ export const LatestCars: React.FC = () => {
                   className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                   src={car.images && car.images[0] ? (car.images[0].startsWith('http') ? car.images[0] : `${car.images[0]}`) : 'https://placehold.co/600x400/0D0D0D/FFD700?text=Premium+Vehicle'} 
                   alt={car.name} 
+                  loading="lazy"
                 />
                 
                 {/* Overlay on hover */}

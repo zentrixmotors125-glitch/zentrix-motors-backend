@@ -39,7 +39,6 @@ export const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li><Link to="/" className="text-muted text-sm hover:text-primary transition-colors hover:translate-x-1 inline-block">Home</Link></li>
               <li><Link to="/listing" className="text-muted text-sm hover:text-primary transition-colors hover:translate-x-1 inline-block">Inventory</Link></li>
-              <li><Link to="/admin" className="text-muted text-sm hover:text-primary transition-colors hover:translate-x-1 inline-block">Admin Dashboard</Link></li>
             </ul>
           </div>
 

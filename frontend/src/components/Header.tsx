@@ -8,7 +8,6 @@ export const Header: React.FC = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Inventory', path: '/listing' },
-    { name: 'Admin', path: '/admin' },
   ];
 
   return (

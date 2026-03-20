@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { api } from '../utils/api';
 
 export const CarDetails: React.FC = () => {
   const { id } = useParams();
@@ -12,8 +13,7 @@ export const CarDetails: React.FC = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
-    fetch(`/api/cars/${id}`)
-      .then(res => res.json())
+    api.get<any>(`/api/cars/${id}`)
       .then(data => setCar(data))
       .catch(err => console.error(err));
     window.scrollTo(0, 0);

@@ -26,7 +26,7 @@ export const Listing: React.FC = () => {
   useEffect(() => {
     let result = cars;
     if (filters.brand) {
-      result = result.filter(c => c.brand?.toLowerCase().includes(filters.brand.toLowerCase()));
+      result = result.filter(c => c.brand?.toLowerCase() === filters.brand.toLowerCase());
     }
     if (filters.fuel) {
       result = result.filter(c => c.fuel_type?.toLowerCase() === filters.fuel.toLowerCase());
@@ -34,7 +34,15 @@ export const Listing: React.FC = () => {
     if (filters.transmission) {
       result = result.filter(c => c.transmission?.toLowerCase() === filters.transmission.toLowerCase());
     }
-    // Simple price filter (assumes price string can be parsed loosely)
+    
+    // Price filter implementation
+    result = result.filter(c => {
+      if (!c.price) return true;
+      // Extract numeric value from price string like "₹5,60,000"
+      const priceValue = parseInt(c.price.replace(/[^\d]/g, ''), 10);
+      return priceValue >= filters.priceRange[0] && priceValue <= filters.priceRange[1];
+    });
+
     setFilteredCars(result);
   }, [filters, cars]);
 
@@ -98,6 +106,25 @@ export const Listing: React.FC = () => {
                       ))}
                     </div>
                   </div>
+
+                  <div>
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted block mb-3">
+                      Price Range: ₹{(filters.priceRange[0]/100000).toFixed(1)}L - ₹{(filters.priceRange[1]/100000).toFixed(1)}L
+                    </label>
+                    <input 
+                      type="range" 
+                      min="0" 
+                      max="10000000" 
+                      step="100000"
+                      value={filters.priceRange[1]}
+                      onChange={(e) => setFilters({...filters, priceRange: [filters.priceRange[0], parseInt(e.target.value)]})}
+                      className="w-full accent-primary bg-bg-secondary h-1.5 rounded-lg appearance-none cursor-pointer"
+                    />
+                    <div className="flex justify-between mt-2">
+                      <span className="text-[8px] text-muted">₹0</span>
+                      <span className="text-[8px] text-muted">₹1Cr+</span>
+                    </div>
+                  </div>
                 </div>
 
                 <button 
@@ -128,6 +155,7 @@ export const Listing: React.FC = () => {
                         className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                         src={car.images && car.images[0] ? (car.images[0].startsWith('http') ? car.images[0] : `${car.images[0]}`) : 'https://placehold.co/600x400/0D0D0D/FFD700?text=Premium+Vehicle'} 
                         alt={car.name} 
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 

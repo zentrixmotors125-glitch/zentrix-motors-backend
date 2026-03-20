@@ -9,7 +9,7 @@ interface RequestOptions extends RequestInit {
 }
 
 export const apiFetch = async (endpoint: string, options: RequestOptions = {}): Promise<Response> => {
-  const { retries = 3, retryDelay = 2000, ...fetchOptions } = options;
+  const { retries = 3, retryDelay = 1000, ...fetchOptions } = options;
   const url = endpoint.startsWith('/') ? endpoint : `/api/${endpoint}`;
 
   let lastError: Error | null = null;
