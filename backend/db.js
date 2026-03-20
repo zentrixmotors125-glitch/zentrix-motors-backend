@@ -1,10 +1,16 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
+// Use __dirname to ensure the DB file is found relative to the function in Netlify
 const dbPath = path.resolve(__dirname, 'zentrix.db');
-const db = new sqlite3.Database(dbPath, (err) => {
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
   if (err) {
     console.error('CRITICAL DB ERROR: Error connecting to database:', err.message);
+    // Try read-only if read-write fails (common in serverless)
+    if (err.code === 'SQLITE_CANTOPEN' || err.message.includes('readonly')) {
+       console.log('Attempting to connect in READONLY mode...');
+       return new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY);
+    }
   } else {
     console.log('Successfully connected to the SQLite database at:', dbPath);
   }

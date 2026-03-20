@@ -27,32 +27,8 @@ app.use((req, res, next) => {
   next();
 });
 
-const uploadDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-  console.log('Created uploads directory');
-}
-
-app.use('/uploads', express.static(uploadDir));
-
-// Multer config
-const storage = multer.storage ? multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  }
-}) : multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  }
-});
-
-const upload = multer({ storage });
+// Netlify Functions are read-only, so we cannot create local upload directories or use Multer diskStorage.
+// Local uploads are disabled. Images are served statically from the frontend public/uploads directory.
 
 // Health check
 app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date().toISOString() }));
@@ -190,14 +166,6 @@ if (fs.existsSync(frontendDist)) {
   console.log('Frontend dist not found — run "npm run build" in the frontend folder first.');
 }
 
-// Keep Render Free Tier alive by pinging the health endpoint every 10 minutes
-const RENDER_EXTERNAL_URL = 'https://zentrix-motors-api.onrender.com';
-setInterval(() => {
-  fetch(`${RENDER_EXTERNAL_URL}/api/health`)
-    .then(res => console.log(`[Keep-Alive] Pinged self successfully at ${new Date().toISOString()}`))
-    .catch(err => console.error(`[Keep-Alive] Ping failed:`, err.message));
-}, 10 * 60 * 1000); // 10 minutes
-
-app.listen(PORT, () => {
-  console.log(`Zentrix Motors running on http://localhost:${PORT}`);
-});
+// --- Serverless Export for Netlify ---
+const serverless = require('serverless-http');
+module.exports.handler = serverless(app);

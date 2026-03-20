@@ -3,20 +3,17 @@
   command = "npm run build"
   publish = "frontend/dist"
 
+[functions]
+  directory = "../backend"
+  included_files = ["../backend/zentrix.db"]
+
 [build.environment]
   NODE_VERSION = "20"
 
-# Proxy /api to Render backend
+# Proxy /api to Netlify Function
 [[redirects]]
   from = "/api/*"
-  to = "https://zentrix-motors-api.onrender.com/api/:splat"
-  status = 200
-  force = true
-
-# Proxy /uploads to Render backend
-[[redirects]]
-  from = "/uploads/*"
-  to = "https://zentrix-motors-api.onrender.com/uploads/:splat"
+  to = "/.netlify/functions/server/api/:splat"
   status = 200
   force = true
 
